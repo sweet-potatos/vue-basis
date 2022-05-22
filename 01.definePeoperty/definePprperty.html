@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			let number = 18;
+			let person = {
+				name: 'test',
+				sex: '男',
+			};
+			
+			Object.defineProperty(person, 'age', {
+//				value: 19,
+//				writable: true,  // 是否可以修改属性的值，默认false
+//				enumerable: true, // 是否可以枚举，默认false
+//				configurable: true, // 是否可以配置(无法删除这个属性)，默认false
+				//configurable: false情况下，writable可以从true改成false，不能从false改成true
+				
+//				get: function() {
+//					console.log('读取age的值')   
+//					return number;
+//				},
+				
+				//简写
+				get() {
+					console.log('读取age的值')   
+					return number;
+				},
+				
+//				set: function(value) {
+//					console.log('设置age的值', value)
+//					number = value;
+//				}
+				
+				//简写
+				set(value) {
+					console.log('设置age的值', value)
+					number = value;
+				}
+			})
+			
+			console.log('person', person)
+		</script>
+	</body>
+</html>

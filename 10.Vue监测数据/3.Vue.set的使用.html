@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<h2>人员信息</h2>
+			<div>{{person.name}}</div>
+			<div>{{person.age}}</div>
+			<div v-if="person.sex">{{person.sex}}</div>
+			<div v-if="person.id">{{person.id}}</div>
+			<button @click="addPersonSex">添加一个person属性</button>
+		</div>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#root',
+				data(){
+					return {
+						name: '东风南方',
+						address: '广州',
+						person: {
+							name: 'jack',
+							age: '26',
+						}
+					}
+				},
+				methods:{
+					addPersonSex(){
+						// 第一种添加方法
+						Vue.set(this.person, 'sex', '男');
+						
+						// 第二种添加方法
+						this.$set(this.person, 'id', '001');
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

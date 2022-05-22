@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root">
+		</div>
+		<script type="text/javascript">
+			let data = {
+				name: '东风南方',
+				address: '广州'
+			};
+			
+			function Observer(obj) {
+				// 汇总对象总所有的属性形成一个数组
+				const keys = Object.keys(obj);
+				// 遍历汇总的数组
+				keys.forEach((k) => {
+					Object.defineProperty(this, k, {
+						get(){
+							return obj[k];
+						},
+						set(val){
+							console.log(`${k}被改了`)
+							obj[k] = val;
+						}
+					})
+				})
+			}
+			
+			//创建一个监视的实例对象，用于监视data中属性的变化
+			const obs = new Observer(data);
+			console.log(obs);
+			
+			let vm = {};
+			vm._data = data = obs;
+		</script>
+	</body>
+</html>

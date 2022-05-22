@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<h2>人员信息</h2>
+			<div>{{person.name}}</div>
+			<div>{{person.age}}</div>
+			<div v-if="person.sex">{{person.sex}}</div>
+			<div v-if="person.id">{{person.id}}</div>
+			<button @click="addPersonSex">添加一个person属性</button>
+			<h3>爱好</h3>
+			<ul>
+				<li v-for="item in person.hobby">{{item}}</li>
+			</ul>
+			<button @click="changeHobby">修改爱好</button>
+			<button @click="changeHobby2">修改爱好(set方法)</button>
+		</div>
+		<script type="text/javascript">
+			/*
+			 * 	vue能监听修改数组的方法: push()、pop()、shift()、unshift()、splice()、sort()、reverse()
+			 * 	这些方法都是会修改原数组的
+			 */ 
+			const vm = new Vue({
+				el: '#root',
+				data(){
+					return {
+						name: '东风南方',
+						address: '广州',
+						person: {
+							name: 'jack',
+							age: '26',
+							hobby: ['象棋', '跑步', '乒乓球'],
+							friends: [],
+						}
+					}
+				},
+				methods:{
+					addPersonSex(){
+						// 第一种添加方法
+						Vue.set(this.person, 'sex', '男');
+						
+						// 第二种添加方法
+						this.$set(this.person, 'id', '001');
+					},
+					changeHobby(){
+						this.person.hobby.push('篮球');			
+					},
+					changeHobby2(){
+						// 修改数组
+						Vue.set(this.person.hobby, '0', '篮球');
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

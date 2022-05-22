@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<input v-model="keyWord" />
+			<ul>
+				<li v-for="(item, index) in findPerson" :key="item.id">
+					{{item.name}}-{{item.age}}-{{item.sex}}
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#root',
+				data(){
+					return {
+						persons: [
+							{id: '001', name: '马冬梅', age: 30, sex: '女'},
+							{id: '002', name: '周冬雨', age: 22, sex: '女'},
+							{id: '003', name: '周杰伦', age: 40, sex: '男'},
+							{id: '004', name: '温兆伦', age: 50, sex: '男'}
+						],
+						keyWord: '',
+						findPerson: [],
+					}
+				},
+				watch: {
+					keyWord: {
+						immediate: true,
+						handler: function(newVal, oldVal) {
+							this.findPerson = this.persons.filter(item => (item.name.includes(newVal)));
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

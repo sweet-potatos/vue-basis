@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn">创建元素</button>
+		
+		<script type="text/javascript">
+			const btn = document.getElementById('btn');
+			btn.onclick = () => {
+				const input = document.createElement('input');
+				input.focus();
+				document.body.appendChild(input);
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id='root'>
+			<div>{{name}}</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		let data = { name: 'test' }
+	
+		const vm = new Vue({
+//			el:'#root',
+			data,
+		});
+		vm.$mount('#root');
+		
+		console.log('vm', vm);
+	</script>
+</html>

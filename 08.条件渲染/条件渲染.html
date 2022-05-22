@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<!--使用v-show做条件渲染-->
+			<!--<h2 v-show="false">v-show显示隐藏</h2>-->
+			<!--<h2 v-show="isVShow">v-show显示隐藏</h2>-->
+			<!--<h2 v-show="1 === 1">v-show显示隐藏</h2>-->
+			
+			<!--使用v-if做条件渲染  每一条v-if都会执行-->
+			<!--<h2 v-if="false">v-if显示隐藏</h2>-->
+			<!--<h2 v-if="isVIf">v-if显示隐藏</h2>-->
+			<!--<h2 v-if="1 === 1">v-if显示隐藏</h2>-->
+			
+			<!--v-else-if和v-else  条件达到后面的语句就不执行-->
+			<!--<h2>当前的n值: {{n}}</h2>-->
+			<!--<button @click="n++">点击</button>-->
+			<!--<h2 v-if="n === 1">Angular</h2>-->
+			<!--<h2 v-else-if="n === 2">React</h2>-->
+			<!--<h2 v-else-if="n === 3">Vue</h2>-->
+			<!--<h2 v-else>test</h2>-->
+			
+			<!--v-if和template配合使用-->
+			<h2>当前的n值: {{n}}</h2>
+			<button @click="n++">点击</button>
+			<template v-if="n === 1">
+				<h2>你好</h2>
+				<h2>张三</h2>
+				<h2>李四</h2>
+			</template>
+			
+		</div>
+		<script type="text/javascript">
+			/*
+			 * 条件渲染:
+			 * 	1.v-if
+			 * 		(1)v-if="表达式"
+			 * 		(2)v-else-if="表达式"
+			 * 		(3)v-else="表达式"
+			 * 	适用于: 切换频率较低的场景
+			 * 	特点: 不展示的DOM元素直接被移除
+			 * 	注意: v-if可以和v-else-if、v-else一起使用，但要求结构不能被打断
+			 * 
+			 * 	2.v-show
+			 * 		v-show="表达式"
+			 * 		适用于: 切换频率较高的场景
+			 * 		特点: 不展示的DOM元素未被移除，仅仅是使用了样式隐藏
+			 * 
+			 * 	3.备注: 使用v-if时，元素可能无法被获取到，而使用v-show一定可以获取
+			 */
+			const vm = new Vue({
+				el: '#root',
+				data(){
+					return {
+						name:'张三',
+						isVShow:false,
+						isVIf: false,
+						n: 0,
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

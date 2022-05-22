@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<input v-model="keyWord" />
+			<button @click="sortype = 2">升序</button>
+			<button @click="sortype = 1">降序</button>
+			<button @click="sortype = 0">原顺序</button>
+			<ul>
+				<li v-for="(item, index) in findPerson" :key="item.id">
+					{{item.name}}-{{item.age}}-{{item.sex}}
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#root',
+				data(){
+					return {
+						persons: [
+							{id: '001', name: '马冬梅', age: 30, sex: '女'},
+							{id: '002', name: '周冬雨', age: 22, sex: '女'},
+							{id: '003', name: '周杰伦', age: 40, sex: '男'},
+							{id: '004', name: '温兆伦', age: 50, sex: '男'}
+						],
+						keyWord: '',
+						sortype: 0, // 0原顺序 1降序 2升序
+					}
+				},
+				computed: {
+					findPerson(){
+						const dataArray = this.persons.filter(item => (item.name.includes(this.keyWord)));
+						if (this.sortype === 2) {
+							return dataArray.sort((personObj1,personObj2) => (personObj1.age-personObj2.age))
+						} else if (this.sortype === 1) {
+							return dataArray.sort((personObj1,personObj2) => (personObj2.age-personObj1.age))
+						} else if (this.sortype === 0) {
+							return dataArray;
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

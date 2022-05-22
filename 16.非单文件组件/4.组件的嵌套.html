@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<app></app>
+		</div>
+		
+		<script type="text/javascript">
+			//定义student组件
+			const student = Vue.extend({
+				name: 'student',
+				template:`
+					<div>
+						<h2>{{name}}</h2>
+						<h2>{{age}}</h2>
+					</div>
+				`,
+				data(){
+					return {
+						name: '张三',
+						age: 18,
+					}
+				},
+			});
+			
+			// 定义school组件
+			const school = Vue.extend({
+				name: 'school',
+				template:`
+					<div>
+						<h2>{{name}}</h2>
+						<h2>{{address}}</h2>
+						<student></student>
+					</div>
+				`,
+				components: {student},
+				data(){
+					return {
+						name: '中大',
+						address: '广州',
+					}
+				},
+			});
+			
+			//定义hello组件
+			const hello = Vue.extend({
+				name: 'hello',
+				template:`
+					<div>{{msg}}</div>
+				`,
+				data(){
+					return {
+						msg: '你好啊'
+					}
+				},
+			});
+			
+			//定义app组件
+			const app = Vue.extend({
+				name: 'app',
+				template:`
+					<div>
+						<hello></hello>
+						<school></school>
+					</div>
+				`,
+				components: {school, hello}
+			});
+			
+			new Vue({
+				el: '#root',
+				//  template:`<app></app>`,
+				components: {app}
+			});
+			
+			
+		</script>
+	</body>
+</html>

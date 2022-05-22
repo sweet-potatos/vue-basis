@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style>
+			.basic{
+				width: 200px;
+				height: 200px;
+				border: 1px solid #333;
+				margin: 30px;
+			}
+			.happy {
+				background: #C51322;
+				font-size: 20px;
+			}
+			.normal {
+				background: #999999;
+			}
+			.sad {
+				background: #32C19A;
+			}
+			.test1 {
+				background: #00A1E1;
+			}
+			.test2 {
+				font-size: 24px;
+			}
+			.test3 {
+				border-radius: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 字符串写法，适用于：样式的类名不确定，需要动态指定 -->
+			<div class="basic" :class="mood" @click="changeMood">{{name}}</div>
+			
+			<!-- 数组写法，适用于：要绑定的样式个数不确定、名字也不确定 -->
+			<div class="basic" :class="classArray">{{name}}</div>
+			
+			<!-- 对象写法，适用于：要绑定的样式个数确定、名字确定，但要动态决定用不用 -->
+			<div class="basic" :class="classObj">{{name}}</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		/*
+		 * class样式：
+		 * 		写法：class="xxx"  xxx可以是字符串、对象、数组
+		 * 		字符串写法适用于：类名不确定，要动态获取
+		 * 		对象写法适用于：要绑定多个样式，个数不确定，名字也不确定
+		 *    数组写法适用于：要绑定多个样式，个数确定，名字也确定，但不确定用不用
+		 */
+		const vm = new Vue({
+			el: '#root',
+			data(){
+				return {
+					name: '测试',
+					mood: 'normal',
+					classArray: ['test1', 'test2', 'test3'],
+					classObj: {
+						test1: false,
+						test2: false,
+					}
+				}
+			},
+			methods: {
+				changeMood(){
+					const array = ['happy', 'normal', 'sad'];
+					const random = Math.random() * 2;
+					const index = Math.round(random);
+					this.mood = array[index]
+				}
+			}
+		})
+	</script>
+</html>
